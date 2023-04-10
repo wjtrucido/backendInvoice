@@ -1,7 +1,15 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
-const userSchema = mongoose.Schema({
+export interface User extends Document {
+  name: string,
+  email: string,
+  pass: string,
+  active: string,
+  rol: string
+}
+
+const userSchema = new mongoose.Schema<User>({
   name: {
     type: String,
     required: true,
@@ -36,9 +44,9 @@ userSchema.pre("save", async function (next) {
     this.pass = await bcrypt.hash(this.pass, salt);
     next();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new Error("Fail password");
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
+export const user = mongoose.model("User", userSchema);

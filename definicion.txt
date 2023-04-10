@@ -1,3 +1,0 @@
-// Definir modelo
-// En las rutas utilizar ese modelo
-// 

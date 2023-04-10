@@ -1,11 +1,19 @@
-const mongoose = require('mongoose')
+import mongoose, { Document } from 'mongoose'
 
-const clientSchema = mongoose.Schema({
+export interface Client extends Document {
+    name: string,
+    surname: string,
+    address: string,
+    phone: string,
+    city: string,
+    country: string
+}
+const clientSchema = new mongoose.Schema<Client>({
     name: {
         type: String,
         required: true
     },
-    surname : {
+    surname: {
         type: String,
         required: true
     },
@@ -13,7 +21,7 @@ const clientSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    tel: {
+    phone: {
         type: String,
         required: true
     },
@@ -26,5 +34,4 @@ const clientSchema = mongoose.Schema({
         required: true
     }
 })
-
-module.exports = mongoose.model('Client', clientSchema)
+export const client = mongoose.model<Client>('Client', clientSchema)

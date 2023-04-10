@@ -2,10 +2,10 @@
 node_modules
 package-lock.json
 
+#dist
+dist
+
 #environment
 .env
 
 requests.http
-def.txt
-prueba.js
-prueba.ts

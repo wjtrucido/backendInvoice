@@ -1,6 +1,17 @@
-const mongoose = require('mongoose')
+import mongoose, { Document } from 'mongoose'
 
-const productSchema = mongoose.Schema({
+export interface Product extends Document {
+    code: string,
+    description: string,
+    brand: string,
+    category: string,
+    measurement_unit: string,
+    purchase_price: number;
+    sale_price: number,
+    tax: number
+}
+
+const productSchema = new mongoose.Schema<Product>({
     code: {
         type: String,
         required: true
@@ -30,4 +41,4 @@ const productSchema = mongoose.Schema({
         type: Number
     }
 })
-module.exports = mongoose.model('Product', productSchema)
+export const product = mongoose.model('Product', productSchema)
