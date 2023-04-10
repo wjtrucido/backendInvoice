@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { product } from '../../models/productModel'
 import { errors } from '../../utils/errors'
 
-export const postproductsController = (req: Request, res: Response) => {
+export const postProductsController = (req: Request, res: Response) => {
     new product(req.body)
         .save()
         .then((product) => {
